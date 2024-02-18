@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+
+  resources :doctors do
+    get 'my_patients', on: :member
+    get 'available_patients', on: :member
+    post 'assign_patient', on: :member
+  end
+
+  resources :patients do
+    get 'available_patients', on: :collection
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
