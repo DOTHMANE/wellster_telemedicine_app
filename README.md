@@ -1,24 +1,51 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This project contains the Wellster telemedicine app. This is a Ruby on Rails 7 project.
 
-Things you may want to cover:
+The api contains endpoints to:
+1. list of patients that could be assigned to doctor
+2. list of a doctor patients
+3. Doctors  can assign themselves to patients
+4. list of patients without doctors
 
-* Ruby version
 
-* System dependencies
+  ```sh
+ my_patients GET    /doctors/:id/my_patients(.:format)        doctors#my_patients
+ available_patients GET    /doctors/:id/available_patients(.:format) doctors#available_patients
+ assign_patient POST   /doctors/:id/assign_patient(.:format)     doctors#assign_patient
+ available_patients GET    /patients/available_patients(.:format)    patients#available_patients
+  ```
 
-* Configuration
+You need:
+* Docker & docker-compose
+* Ruby 3.3.0
 
-* Database creation
+## Build the environment
 
-* Database initialization
+  ```sh
+  docker-compose build
+  ```
 
-* How to run the test suite
+## Database creation
 
-* Services (job queues, cache servers, search engines, etc.)
+  ```sh
+  docker-compose run backend bundle exec rake db:setup
+  ```
 
-* Deployment instructions
+## Start the environment
 
-* ...
+  ```sh
+  docker-compose up
+  ```
+
+## Working with the Rails container
+
+  ```sh
+  docker-compose exec backend bash
+  ```
+
+## Tests
+
+  ```sh
+  rspec
+  ```
